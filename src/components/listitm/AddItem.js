@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Form, Button } from "react-bootstrap";
+import authService from "../../services/authService";
 
 const AddItem = () => {
+  const userId = authService.getCurrentUser().user.id;
   const [formData, setFormData] = useState({
     name: "",
     category: "",
     price: "",
     image: "",
     description: "",
+    userId: userId
   });
+
+  console.log(userId);
 
   // ✅ Handle input changes
   const handleChange = (e) => {

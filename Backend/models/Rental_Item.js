@@ -11,7 +11,7 @@ const itemSchema = new mongoose.Schema({
     location: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
-    renter_id: { type: Number, required: true },
+    renter_id: { type: String, required: true },
     category: { type: String, required: true },
     subcategory: { type: String, required: true },
     item_condition: [{ type: String }],

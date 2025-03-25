@@ -1,9 +1,17 @@
 import React from "react";
-import { Navbar, NavDropdown, Container, Form, FormControl, Button } from "react-bootstrap";
+import {
+  Navbar,
+  NavDropdown,
+  Container,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import { FaSearch, FaUserCircle, FaMapMarkerAlt, FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import authService from "../../services/authService";
 import "../css/header.css";
+import icon from "../../images/icon.jpeg";
 
 const RentEaseNavbar = () => {
   const navigate = useNavigate();
@@ -11,16 +19,30 @@ const RentEaseNavbar = () => {
 
   const handleLogout = () => {
     authService.logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#4b792b" }} className="shadow-sm py-2">
+    <Navbar
+      expand="lg"
+      style={{ backgroundColor: "#4b792b" }}
+      className="shadow-sm py-2"
+    >
       <Container className="d-flex justify-content-between align-items-center">
-        
         {/* Left Section: Logo & Tagline */}
-        <Navbar.Brand href="/" className="text-white fw-bold">
-          Why Buy When <br /> You Can Rent
+        <Navbar.Brand
+          href="/"
+          className="text-white fw-bold"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <img
+            src={icon}
+            alt="Logo"
+            style={{ width: 50, height: 50, marginRight: "10px" }} // Adjust the margin for spacing between the icon and text
+          />
+          <span style={{ display: "inline-block" }}>
+            Why Buy When You Can Rent
+          </span>
         </Navbar.Brand>
 
         {/* Middle Section: Search Bar */}
@@ -47,7 +69,12 @@ const RentEaseNavbar = () => {
         <div className="d-flex align-items-center">
           {/* Location Dropdown */}
           <NavDropdown
-            title={<><FaMapMarkerAlt className="me-1" /><span className="d-none d-md-inline">Location</span></>}
+            title={
+              <>
+                <FaMapMarkerAlt className="me-1" />
+                <span className="d-none d-md-inline">Location</span>
+              </>
+            }
             id="location-dropdown"
             className="text-white me-3"
           >
@@ -57,20 +84,26 @@ const RentEaseNavbar = () => {
           </NavDropdown>
 
           {/* List Button */}
-          <Button 
-            variant="light" 
-            className="me-3 d-flex align-items-center" 
-            onClick={() => navigate('/list')}
+          <Button
+            variant="light"
+            className="me-3 d-flex align-items-center"
+            onClick={() =>
+              currentUser ? navigate("/list") : navigate("/login")
+            }
           >
             <FaPlus className="me-1" /> List
           </Button>
 
           {/* Profile Section */}
-          <NavDropdown 
+          <NavDropdown
             title={
               <div className="d-inline">
                 <FaUserCircle size={30} color="white" />
-                {currentUser && <span className="ms-2 text-white">{currentUser.username}</span>}
+                {currentUser && (
+                  <span className="ms-2 text-white">
+                    {currentUser.username}
+                  </span>
+                )}
               </div>
             }
             id="profile-dropdown"
@@ -78,15 +111,25 @@ const RentEaseNavbar = () => {
           >
             {currentUser ? (
               <>
-                <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => navigate('/my-listings')}>My Listings</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => navigate("/profile")}>
+                  Profile
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => navigate("/my-listings")}>
+                  My Listings
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={handleLogout}>
+                  Logout
+                </NavDropdown.Item>
               </>
             ) : (
               <>
-                <NavDropdown.Item onClick={() => navigate('/login')}>Login</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => navigate('/signup')}>Sign Up</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => navigate("/login")}>
+                  Login
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => navigate("/signup")}>
+                  Sign Up
+                </NavDropdown.Item>
               </>
             )}
           </NavDropdown>

@@ -36,7 +36,7 @@ router.post("/listings", upload.array("images", 10), async (req, res) => {
       city: req.body.city,
       location: req.body.location,
       item_condition: req.body.item_condition,
-      renter_id: 1, // Temporary
+      renter_id: req.body.userId, // Temporary
       security_deposit: parseFloat(req.body.price) * 0.2,
       availability: true
     };
@@ -86,10 +86,29 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// 🔹 4️⃣ Get Item by ID
-router.get("/:id", async (req, res) => {
+router.get("/items", async (req, res) => {
   try {
-    const item = await Item.findById(req.params.id);
+    const qCategory = req.query.category
+    const userId = req.query.userId
+    let items
+    if (qCategory) {
+      items = await Item.find({ category: { $regex: new RegExp(`^${qCategory}$`, 'i') } })//.populate("ownerId")
+    } else if (userId) {
+      items = await Item.find({ renter_id: userId })//.populate("ownerId")
+    } else {
+      items = await Item.find()//.populate("ownerId")
+    }
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+// 🔹 4️⃣ Get Item by ID
+router.get("/items/:itemId", async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.itemId);
     if (!item) return res.status(404).json({ message: "Item not found" });
 
     res.json(item);

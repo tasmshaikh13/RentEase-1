@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { FaTshirt, FaCar, FaCogs, FaTv, FaTools, FaHome, FaStore, FaCouch } from "react-icons/fa";
 
 const categories = [
-  { icon: <FaTshirt size={30} />, label: "Costume", path: "costume" },
-  { icon: <FaCar size={30} />, label: "Vehicle", path: "vehicle" },
-  { icon: <FaCogs size={30} />, label: "Machines", path: "machines" },
-  { icon: <FaTv size={30} />, label: "Electronics", path: "electronics" },
-  { icon: <FaTools size={30} />, label: "Tool", path: "tool" },
-  { icon: <FaHome size={30} />, label: "House", path: "house" },
-  { icon: <FaStore size={30} />, label: "Shop", path: "shop" },
-  { icon: <FaCouch size={30} />, label: "Furniture", path: "furniture" }
+  { icon: <FaTshirt size={30} />, label: "Costumes", path: "Costumes" },
+  { icon: <FaCar size={30} />, label: "Vehicles", path: "Vehicles" },
+  { icon: <FaCogs size={30} />, label: "Machines", path: "Machines" },
+  { icon: <FaTv size={30} />, label: "Electronics", path: "Electronics" },
+  { icon: <FaTools size={30} />, label: "Tool", path: "Tool" },
+  { icon: <FaHome size={30} />, label: "House", path: "House" },
+  { icon: <FaStore size={30} />, label: "Shop", path: "Shop" },
+  { icon: <FaCouch size={30} />, label: "Furniture", path: "Furniture" }
 ];
 
 const Categories = () => {

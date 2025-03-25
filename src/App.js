@@ -11,6 +11,8 @@ import AddItem from "./components/listitm/AddItem";
 import ListItem from "./components/listitm/ListItem"; // ✅ Import ListItem
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import ItemPage from "./components/categories/ItemPage";
+import MyListingsPage from "./components/categories/MyListingsPage";
 
 function App() {
   return (
@@ -27,9 +29,11 @@ function App() {
         } />
         <Route path="/List" element={<ListItem />} /> {/* ✅ Fixed */}
         <Route path="/category/:categoryName" element={<CategoryPage />} />
+        <Route path="/listings/:itemId" element={<ItemPage />} />
         <Route path="/add-item" element={<AddItem />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/my-listings" element={<MyListingsPage />} />
       </Routes>
     </Router>
   );

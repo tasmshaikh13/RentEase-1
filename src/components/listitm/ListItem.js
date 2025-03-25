@@ -4,6 +4,7 @@ import "./styles.css";
 import axios from "axios";
 
 import { Container, Form, Button } from "react-bootstrap";
+import authService from "../../services/authService";
 
 const ListItem = () => {
   const [category, setCategory] = useState("");
@@ -482,6 +483,7 @@ const ListItem = () => {
     data.append("state", state);
     data.append("city", city);
     data.append("location", `${city}, ${state}`);
+    data.append("userId", authService.getCurrentUser().user.id);
   
     // Append conditions
     if (formData.condition.length > 0) {

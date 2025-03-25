@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import authService from "../../services/authService";
 
-const CategoryPage = () => {
+const MyListingsPage = () => {
   const { categoryName } = useParams(); // Get category from URL
   const [items, setItems] = useState([]);
   const navigate = useNavigate();
+  const currentUser = authService.getCurrentUser();
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/items?category=${categoryName}`);
+        const response = await fetch(`http://localhost:5000/api/items?userId=${currentUser.user.id}`);
         const data = await response.json();
         setItems(data);
       } catch (error) {
@@ -24,7 +26,7 @@ const CategoryPage = () => {
 
   return (
     <Container className="py-4">
-      <h2 className="text-center">Items in {categoryName}</h2>
+      <h2 className="text-center">My Listings</h2>
       <Row>
         {items.length > 0 ? (
           items.map((item) => (
@@ -44,11 +46,11 @@ const CategoryPage = () => {
             </Col>
           ))
         ) : (
-          <p className="text-center">No items available in this category.</p>
+          <p className="text-center">No items listed.</p>
         )}
       </Row>
     </Container>
   );
 };
 
-export default CategoryPage;
+export default MyListingsPage;
