@@ -61,6 +61,20 @@ const ItemPage = () => {
               marginBottom: "20px",
             }}
           >
+            <div>{item.security_deposit}</div>
+            <div>
+              <strong style={{ fontSize: 18 }}>${item.security_deposit}</strong>
+            </div>
+          </div>
+          <div
+            style={{
+              border: "0.5px solid black",
+              borderRadius: 4,
+              width: "400px",
+              padding: "20px",
+              marginBottom: "20px",
+            }}
+          >
             Description
             <div>{item.product_description}</div>
           </div>
@@ -77,6 +91,8 @@ const ItemPage = () => {
               marginTop: "20px",
             }}
           >
+            
+
             Terms and Condition
             <ul>
               {item &&

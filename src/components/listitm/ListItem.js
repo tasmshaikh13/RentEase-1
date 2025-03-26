@@ -620,18 +620,16 @@ const ListItem = () => {
               }
             }}
           />
+
+       
+
           <small className="text-muted">
             {formData.description.split(/\s+/).filter(word => word.length > 0).length} / 100 words
           </small>
         </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Price (per day/week/month) *</Form.Label>
-          <Form.Control type="number" name="price" placeholder="Enter rental price" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
-        </Form.Group>
-
-        {/* Added Rent Type Dropdown */}
-        <Form.Group className="mb-3">
+             {/* Added Rent Type Dropdown */}
+             <Form.Group className="mb-3">
           <Form.Label>Rent Type *</Form.Label>
           <Form.Select value={formData.rentType} onChange={(e) => setFormData({ ...formData, rentType: e.target.value })}>
             <option value="">Choose rent type</option>
@@ -641,6 +639,15 @@ const ListItem = () => {
           </Form.Select>
         </Form.Group>
 
+        <Form.Group className="mb-3">
+          <Form.Label>Price (per day/week/month) *</Form.Label>
+          <Form.Control type="number" name="price" placeholder="Enter rental price" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
+        </Form.Group>
+       
+        <Form.Group className="mb-3">
+          <Form.Label>Security deposit *</Form.Label>
+          <Form.Control type="number" name="price" placeholder="Enter Security Deposite" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
+        </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Select State *</Form.Label>
           <Form.Select value={state} onChange={(e) => setState(e.target.value)}>

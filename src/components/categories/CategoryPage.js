@@ -31,7 +31,7 @@ const CategoryPage = () => {
             <Col onClick={() => {
               navigate(`/listings/${item._id}`);
             }} key={item._id} md={4} className="mb-3">
-              <Card>
+              <Card> 
                 <Card.Img variant="top" src={item.images && item.images.length > 0 
                     && `http://localhost:5000/uploads/${item.images[0]}`} crossOrigin="anonymous" />
                 <Card.Body>
